@@ -3,13 +3,30 @@ import axios from "axios";
 
 const BASE_URL = 'http://localhost:3000'
 
-
+type userType = {
+  message: string
+  user: {
+    id: number
+    email: string
+    created_at: string
+    updated_at: string
+  }
+}
 
 function SignUp() {
   // props
 
   // hooks
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState<userType>({
+    message: "",
+    user: {
+      id: 0,
+      email: "",
+      created_at: "",
+      updated_at: "",
+    },
+  });
+  const [error, setError] = useState([])
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -17,7 +34,6 @@ function SignUp() {
   // event handlers
   function handleOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    console.log(user);
     axios.post(BASE_URL + '/users', {
       user: {
         email: email,
@@ -26,12 +42,13 @@ function SignUp() {
       }
     }).then((response) => {
       setUser(response.data);
+    }).catch(error => {
+      setError(error);
     });
   }
 
   // debug
   console.log(user);
-
 
   return (
     <div>
@@ -102,6 +119,7 @@ function SignUp() {
             </div>
 
             <div>
+            <div className='flex justify-center mb-2 text-green-500'>{user? (user.message) : ("no user...")}</div>
               <button
                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 onClick={(e) => handleOnClick(e)}
@@ -112,6 +130,7 @@ function SignUp() {
           </form>
         </div>
       </div>
+      
 
     </div>
   )
