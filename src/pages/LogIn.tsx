@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = 'http://localhost:3000'
 
@@ -29,6 +30,7 @@ function LogIn() {
   const [error, setError] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   // event handlers
   function handleOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
@@ -40,6 +42,10 @@ function LogIn() {
       }
     }).then((response) => {
       setUser(response.data);
+      console.log('redirecting...')
+      setTimeout( () => {
+        navigate('/')
+      }, 1000);
     }).catch(error => {
       setError(error);
     });
