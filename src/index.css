@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+  color: rgb(13 148 136 / var(900));
+  border-bottom: 0.2em solid rgb(13 148 136 ); 
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+}
