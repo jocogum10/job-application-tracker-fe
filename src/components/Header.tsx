@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {NavLink } from 'react-router-dom'
+import retrieveUser from '../utils/retrieveUser';
+
+type userType = {
+  id: number
+  email?: string
+  created_at: string
+  updated_at: string
+}
 
 function Header() {
+  const [user, setUser] = useState<userType>();
+  useEffect(() => {
+    setUser(retrieveUser());
+    },[]);
+
+    
   return (
 
     <header className="bg-white drop-shadow-lg">
@@ -54,6 +68,7 @@ function Header() {
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
+              <div className={`${user? ("mr-4 place-self-end") : ("hidden")}`}>{user? user.email: ""}</div>
               <NavLink 
                 className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
                 to="/login"

@@ -43,6 +43,7 @@ function LogIn() {
         password: password
       }
     }).then((response) => {
+      
       console.log(response);
       setUser(response.data);
       saveUser(response.data.user)
