@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import saveJwt from '../utils/saveJwt';
+import saveUser from '../utils/saveUser';
 
 const BASE_URL = 'http://localhost:3000'
 
@@ -26,10 +29,11 @@ function SignUp() {
       updated_at: "",
     },
   });
-  const [error, setError] = useState([])
+  const [error, setError] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const navigate = useNavigate();
 
   // event handlers
   function handleOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -42,6 +46,12 @@ function SignUp() {
       }
     }).then((response) => {
       setUser(response.data);
+      saveUser(response.data.user)
+      saveJwt(response.headers.authorization)
+      console.log('redirecting...')
+      setTimeout( () => {
+        navigate('/')
+      }, 1000);
     }).catch(error => {
       setError(error);
     });
