@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import saveJwt from '../utils/saveJwt';
+import saveUser from '../utils/saveUser';
 
 const BASE_URL = 'http://localhost:3000'
 
@@ -41,7 +43,10 @@ function LogIn() {
         password: password
       }
     }).then((response) => {
+      console.log(response);
       setUser(response.data);
+      saveUser(response.data.user)
+      saveJwt(response.headers.authorization)
       console.log('redirecting...')
       setTimeout( () => {
         navigate('/')
