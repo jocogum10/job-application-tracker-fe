@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import saveJwt from '../utils/saveJwt';
 import saveUser from '../utils/saveUser';
+import Header from '../components/Header';
 
 const BASE_URL = 'http://localhost:3000'
 
@@ -59,6 +60,7 @@ function SignUp() {
 
   return (
     <div>
+      <Header />
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>

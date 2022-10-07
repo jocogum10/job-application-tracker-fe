@@ -4,13 +4,11 @@ type userType = {
     email: string
     created_at: string
     updated_at: string
-  }
-}
+  } 
+} | null
 
-function setUser(user: userType){
+function saveUser(user: userType){
   localStorage.setItem('job-app-user', JSON.stringify(user));
-  const jwt = JSON.parse(localStorage.getItem('job-app-token') || '');
-  return jwt;
 }
 
-export default setUser;
+export default saveUser;

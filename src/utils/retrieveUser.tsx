@@ -8,7 +8,7 @@ type userType = {
 }
 
 function retrieveUser<userType>(){
-  const user = JSON.parse(localStorage.getItem('job-app-user') || '{}');
+  const user = JSON.parse(localStorage.getItem('job-app-user') || 'null');
   return user;
 }
 

@@ -1,8 +1,12 @@
 import React from 'react'
+import Header from '../components/Header'
 
 function Workspace() {
   return (
-    <div>Workspace</div>
+    <div>
+      <Header />
+      Workspace
+    </div>
   )
 }
 
