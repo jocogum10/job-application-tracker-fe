@@ -1,4 +1,4 @@
-function saveJwt(token: string){
+function saveJwt(token: string | null){
   localStorage.setItem('job-app-token', JSON.stringify(token));
 }
 

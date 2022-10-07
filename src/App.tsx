@@ -10,8 +10,7 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <main>
-      <Header />
+    <main className='h-screen overflow-auto bg-gray-200'>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import {NavLink } from 'react-router-dom'
 import retrieveUser from '../utils/retrieveUser';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import saveJwt from '../utils/saveJwt';
+import saveUser from '../utils/saveUser';
+
+const BASE_URL = 'http://localhost:3000'
 
 type userType = {
   id: number
@@ -10,12 +16,56 @@ type userType = {
 }
 
 function Header() {
+
+  const navigate = useNavigate();
+  const [error, setError] = useState([]);
   const [user, setUser] = useState<userType>();
   useEffect(() => {
     setUser(retrieveUser());
     },[]);
 
-    
+  // event handlers
+  function handleOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+    e.preventDefault();
+    axios.delete(
+      BASE_URL + '/users/sign_out'
+    ).then((response) => {
+      console.log(response);
+      saveUser(null)
+      saveJwt(null)
+      setUser(retrieveUser())
+      console.log('redirecting...')
+      setTimeout( () => {
+        navigate('/')
+      }, 1000);
+    }).catch((error) => {
+      setError(error);
+    });
+  }
+
+    const notLoggedIn = <div className='sm:flex sm:gap-4'>
+        <NavLink 
+          className="block rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700"
+          to="/login">
+          Login
+        </NavLink >
+        <NavLink 
+          className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600 transition hover:text-indigo-600/75 sm:block"
+          to="/signup">
+          Sign Up
+        </NavLink >
+      </div>
+
+    const loggedIn = <div className='sm:flex sm:gap-4'>
+        <div className="block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600">{user? user.email: ""}</div>
+        <button 
+        className="hidden rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700 sm:block"
+        onClick={handleOnClick}>
+        Log Out
+        </button >
+    </div>
+
+
   return (
 
     <header className="bg-white drop-shadow-lg">
@@ -25,7 +75,7 @@ function Header() {
         
 
         
-        <NavLink to="/" className='text-teal-600' end>
+        <NavLink to="/" className='text-indigo-600' end>
           <span className="sr-only">Home</span>
           <svg
             className="h-8"
@@ -67,22 +117,8 @@ function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
-              <div className={`${user? ("mr-4 place-self-end") : ("hidden")}`}>{user? user.email: ""}</div>
-              <NavLink 
-                className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
-                to="/login"
-              >
-                Login
-              </NavLink >
+            {user? (loggedIn) : (notLoggedIn)}
 
-              <NavLink 
-                className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
-                to="/signup"
-              >
-                Sign Up
-              </NavLink >
-            </div>
 
             <button
               className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
@@ -112,3 +148,7 @@ function Header() {
 }
 
 export default Header
+
+
+
+
