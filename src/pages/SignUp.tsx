@@ -49,7 +49,6 @@ function SignUp() {
       setUser(response.data);
       saveUser(response.data.user)
       saveJwt(response.headers.authorization)
-      console.log('redirecting...')
       setTimeout( () => {
         navigate('/')
       }, 1000);
