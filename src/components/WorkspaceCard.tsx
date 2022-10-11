@@ -1,4 +1,8 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react';
+import retrieveJwt from '../utils/retrieveJwt'
+
+const BASE_URL = 'http://localhost:3000'
 
 interface WorkspaceCardProps {
   name: string;
@@ -9,22 +13,50 @@ interface WorkspaceCardProps {
 
 function WorkspaceCard(props: WorkspaceCardProps) {
 
+  // hooks
+  const [data, setData] = useState([]);
+  const [error, setError] = useState([])
+
+  // event handlers
+  function handleDeleteWorkspace (workspace_id: number) {
+    axios.delete(BASE_URL +`/api/v1/workspaces/${workspace_id}`, {
+      headers: {
+        'Authorization': retrieveJwt(),
+      }
+    }).then((response) => {
+      setData(response.data.data);
+    }).catch(error => {
+      setError(error);
+    });
+  }
+
   return (
-    <a 
-      className="relative block rounded-xl border border-gray-100 p-8 shadow-xl bg-white m-5 hover:border-indigo-600 hover:drop-shadow-2xl" 
+    <a
+      className="relative block rounded-xl border border-gray-100 p-8 shadow-xl bg-white m-5 hover:border-indigo-600 hover:drop-shadow-2xl"
       href=""
     >
 
-        <div className="text-gray-500 sm:pr-8">
+      <div className="text-gray-500 sm:pr-8">
 
-          <h5 className="text-xl font-bold text-gray-900 ">{props.name}</h5>
+        <h5 className="text-xl font-bold text-gray-900 ">{props.name}</h5>
 
-          <p className="mt-2 hidden text-sm sm:block">
-            {props.description}
-          </p>
-        </div>
-      </a>
+        <p className="mt-2 hidden text-sm sm:block">
+          {props.description}
+        </p>
+      </div>
+
+      <div className='flex justify-end'>
+        <button
+          type="submit"
+          className="group relative rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+          onClick={() => handleDeleteWorkspace(props.workspace_id)}
+        >
+          Delete
+        </button>
+      </div>
+    </a>
   )
 }
 
 export default WorkspaceCard
+

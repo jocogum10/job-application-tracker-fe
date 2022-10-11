@@ -8,23 +8,18 @@ const BASE_URL = 'http://localhost:3000'
 
 function Workspace() {
 
+  // hooks
   const [data, setData] = useState([]);
-  const [error, setError] = useState([])
+  const [error, setError] = useState([]);
   const [workspaceName, setWorkspaceName] = useState('');
   const [workspaceDescription, setWorkspaceDescription] = useState('');
   const [newWorkspaceModal, setNewWorkspaceModal] = useState(false);
-
-  console.log(data)
 
   useEffect(() => {
     retrieveWorkspaces();
   }, []);
 
-  const cards = data.map((data) => {
-    return <WorkspaceCard key={data["id"]} workspace_id={data["attributes"]["id"]} name={data["attributes"]["name"]} description={data["attributes"]["description"]} />
-  });
-
-  // ---------------------------test modal
+  // event handlers
   function retrieveWorkspaces(){
     axios.get(BASE_URL + '/api/v1/workspaces', {
       headers: {
@@ -55,9 +50,14 @@ function Workspace() {
     });
   }
 
+
+  // elements
+  const cards = data.map((data) => {
+    return <WorkspaceCard key={data["id"]} workspace_id={data["id"]} name={data["attributes"]["name"]} description={data["attributes"]["description"]} />
+  });
+
   const modal = <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
@@ -66,7 +66,6 @@ function Workspace() {
               <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
                 <h3 className="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create New Workspace</h3>
                 <div className="mt-2">
-                  {/* ----------- */}
                   <div className='my-2'>
                     <label htmlFor="workspaceName" className="sr-only">
                       Email address
@@ -96,7 +95,6 @@ function Workspace() {
                       onChange={(event) => setWorkspaceDescription(event.target.value)}
                     />
                   </div>
-                  {/* -------- */}
                 </div>
               </div>
             </div>
@@ -109,7 +107,6 @@ function Workspace() {
       </div>
     </div>
   </div>
-  // -----------------------
 
   return (
     <div>
