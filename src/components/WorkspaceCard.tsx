@@ -3,6 +3,7 @@ import React from 'react'
 interface WorkspaceCardProps {
   name: string;
   description: string;
+  workspace_id: number;
   children?: React.ReactNode; // 👈️ for demo purposes
 }
 
