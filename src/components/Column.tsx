@@ -1,8 +1,17 @@
 import React from 'react'
+import JobAppCard from './JobAppCard'
 
-function Column() {
+type columnType = {
+  title: string;
+};
+
+function Column({title}: columnType) {
   return (
-    <div>Column</div>
+    <div className='m-1 bg-indigo-300 h-full rounded p-3'>
+      {title}
+      <JobAppCard />
+      <JobAppCard />
+    </div>
   )
 }
 
