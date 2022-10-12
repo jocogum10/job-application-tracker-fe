@@ -15,7 +15,7 @@ function WorkspaceCard(props: WorkspaceCardProps) {
 
   // hooks
   const [data, setData] = useState([]);
-  const [error, setError] = useState([])
+  const [error, setError] = useState([]);
 
   // event handlers
   function handleDeleteWorkspace (workspace_id: number) {
@@ -28,6 +28,10 @@ function WorkspaceCard(props: WorkspaceCardProps) {
     }).catch(error => {
       setError(error);
     });
+  }
+
+  function handleEditWorkspace () {
+    console.log('To be implemented...')
   }
 
   return (
@@ -45,13 +49,20 @@ function WorkspaceCard(props: WorkspaceCardProps) {
         </p>
       </div>
 
-      <div className='flex justify-end'>
+      <div className='flex justify-end gap-x-7'>
         <button
           type="submit"
           className="group relative rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
           onClick={() => handleDeleteWorkspace(props.workspace_id)}
         >
           Delete
+        </button>
+        <button
+          type="submit"
+          className="group relative rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          onClick={() => handleEditWorkspace()}
+        >
+          Edit
         </button>
       </div>
     </a>
