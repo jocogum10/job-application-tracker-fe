@@ -1,8 +1,11 @@
 import React from 'react'
 import Board from '../components/Board'
 import Header from '../components/Header'
+import { useParams } from 'react-router-dom'; 
 
 function Dashboard() {
+  let { workspace_id } = useParams();
+  console.log(workspace_id)
   return (
     <div>
       <Header />

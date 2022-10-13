@@ -102,11 +102,11 @@ function Header() {
                 </NavLink >
               </li>
 
-              <li>
+              {/* <li>
                 <NavLink to="/dashboard" className="text-gray-500 transition hover:text-gray-500/75">
                   Dashboard
                 </NavLink >
-              </li>
+              </li> */}
 
               <li>
                 <NavLink to="/profile" className="text-gray-500 transition hover:text-gray-500/75">

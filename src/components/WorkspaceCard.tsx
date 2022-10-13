@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import retrieveJwt from '../utils/retrieveJwt'
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = 'http://localhost:3000'
 
@@ -17,6 +18,7 @@ function WorkspaceCard(props: WorkspaceCardProps) {
   // hooks
   const [data, setData] = useState([]);
   const [error, setError] = useState([]);
+  const navigate = useNavigate();
 
   // event handlers
   function handleDeleteWorkspace (workspace_id: number) {
@@ -30,6 +32,10 @@ function WorkspaceCard(props: WorkspaceCardProps) {
     }).catch(error => {
       setError(error);
     });
+  }
+
+  function handleLinkToDashboard(workspace_id: number) {
+    navigate(`/dashboard/${workspace_id}`)
   }
 
   function handleEditWorkspace () {
@@ -54,7 +60,7 @@ function WorkspaceCard(props: WorkspaceCardProps) {
         <button
           type="submit"
           className="group relative rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          onClick={() => handleDeleteWorkspace(props.workspace_id)}
+          onClick={() => handleLinkToDashboard(props.workspace_id)}
         >
           Go to Dashboard
         </button>
