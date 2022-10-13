@@ -44,6 +44,8 @@ function Workspace() {
     }).then((response) => {
       console.log(response)
       setNewWorkspaceModal(false);
+      setWorkspaceName('');
+      setWorkspaceDescription('')
       retrieveWorkspaces();
     }).catch(error => {
       setError(error);
@@ -53,7 +55,7 @@ function Workspace() {
 
   // elements
   const cards = data.map((data) => {
-    return <WorkspaceCard key={data["id"]} workspace_id={data["id"]} name={data["attributes"]["name"]} description={data["attributes"]["description"]} />
+    return <WorkspaceCard key={data["id"]} workspace_id={data["id"]} name={data["attributes"]["name"]} description={data["attributes"]["description"]} retrieveWorkspaces={retrieveWorkspaces} />
   });
 
   const modal = <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
