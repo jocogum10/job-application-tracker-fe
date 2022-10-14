@@ -58,6 +58,24 @@ function Dashboard() {
   // jobApplications?.map( (jobs, index) => {
   //   console.log(jobs);
   // });
+
+  function onDragStart (e:React.DragEvent<HTMLDivElement>, id: string) {
+    e.dataTransfer.setData('id', id);
+  }
+
+  function onDragOver (e:React.DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+  }
+
+  function onDrop(e:React.DragEvent<HTMLDivElement>, columnId: string){
+    const id = e.dataTransfer.getData('id');
+
+    const updatedJobApps = jobApplications.filter( (jobApplication) => {
+      if(jobApplication.id.toString() === id) {
+        console.log(jobApplication)
+      }
+    })
+  }
   
   return (
     <div>
@@ -70,10 +88,10 @@ function Dashboard() {
         </div>
       </section>
       <main className='grid grid-cols-4 m-1'>
-        <Column key={1} title={'Applied'} jobApplications={jobApplications}/>
-        <Column key={2} title={'Interviewed'} jobApplications={jobApplications}/>
-        <Column key={3} title={'Rejected'} jobApplications={jobApplications}/>
-        <Column key={4} title={'Offered'} jobApplications={jobApplications}/>
+        <Column key={1} title={'Applied'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
+        <Column key={2} title={'Interviewed'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
+        <Column key={3} title={'Rejected'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
+        <Column key={4} title={'Offered'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
       </main>
     </div>
   )
