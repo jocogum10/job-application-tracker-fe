@@ -1,17 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import Board from '../components/Board'
 import Header from '../components/Header'
 import { useParams } from 'react-router-dom'; 
 import axios from 'axios';
 import retrieveJwt from '../utils/retrieveJwt'
+import Column from '../components/Column'
 
 const BASE_URL = 'http://localhost:3000'
+
+interface JobApplicationModel {
+  id: number
+  attributes: {
+    company: string
+    description: string
+    job_link: string
+    notes: string
+    status: string
+    title: string
+  }
+}
+interface JobApplicationListModel {
+  jobApplications: JobApplicationModel[];
+}
 
 function Dashboard() {
   // hooks
   const { workspace_id } = useParams();
 
-  const [jobApplications, setJobApplications] = useState([]);
+  const [jobApplications, setJobApplications] = useState<JobApplicationModel[]>([]);
   const [error, setError] = useState([]);
   const [workspaceName, setWorkspaceName] = useState([]);
 
@@ -33,13 +48,16 @@ function Dashboard() {
       // output of req.
       setWorkspaceName(res1.data.data.attributes.name)
       setJobApplications(res2.data.data)
-      console.log('res1', res1.data.data, 'res2', res2.data.data)
+      // console.log('res1', res1.data.data, 'res2', res2.data.data)
       
     })).catch(error => {
       setError(error);
     });
   }, []);
-  console.log(jobApplications)
+
+  // jobApplications?.map( (jobs, index) => {
+  //   console.log(jobs);
+  // });
   
   return (
     <div>
@@ -51,8 +69,11 @@ function Dashboard() {
         <div className='py-6 px-4 sm:px-6 lg:px-8'>
         </div>
       </section>
-      <main>
-        <Board />
+      <main className='grid grid-cols-4 m-1'>
+        <Column key={1} title={'Applied'} jobApplications={jobApplications}/>
+        <Column key={2} title={'Interviewed'} jobApplications={jobApplications}/>
+        <Column key={3} title={'Rejected'} jobApplications={jobApplications}/>
+        <Column key={4} title={'Offered'} jobApplications={jobApplications}/>
       </main>
     </div>
   )
