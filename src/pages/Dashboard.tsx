@@ -83,14 +83,15 @@ function Dashboard() {
       const draggedCard = jobApplication.id;
       if (draggedCard.toString() === id) {
         jobApplication.attributes.status = title.toLowerCase();
+        console.log('update card: ',jobApplication);
+        handleUpdateCardOnDrop(workspace_id, id, jobApplication);
       }
-      return jobApplication;
+      // return jobApplication;
     })
-    setJobApplications(updatedJobApps);
-    console.log(jobApplications);
+    // setJobApplications(updatedJobApps);
   }
 
-  function handleNewJobApplication(workspace_id: string='0') {
+  function handleNewJobApplication(workspace_id: string='NA') {
     axios.post(BASE_URL + `/api/v1/workspaces/${workspace_id}/job-applications`, {
       job_application: {
         'title': jobTitle,
@@ -105,7 +106,7 @@ function Dashboard() {
         'Authorization': retrieveJwt(),
       }
     }).then((response) => {
-      console.log(response)
+      // console.log(response)
       setNewJobAppModal(false);
       setJobTitle('');
       setJobDescription('');
@@ -114,6 +115,40 @@ function Dashboard() {
       setJobStatus('Applied');
       setJobNotes('');
       retrieveJobApplications();
+    }).catch(error => {
+      setError(error);
+    });
+  }
+
+  function handleUpdateCardOnDrop (workspace_id: string='NA', id: string, jobApplication: JobApplicationModel) {
+    axios.patch(BASE_URL + `/api/v1/workspaces/${workspace_id}/job-applications/${id}`,{
+      job_application: {
+        'title': jobApplication.attributes.title,
+        'description': jobApplication.attributes.description,
+        'company': jobApplication.attributes.company,
+        'job_link': jobApplication.attributes.job_link,
+        'status': jobApplication.attributes.status.toLowerCase(),
+        'notes': jobApplication.attributes.notes,
+      }
+    },{
+      headers: {
+        'Authorization': retrieveJwt(),
+      }
+    }).then((response) => {
+      retrieveJobApplications();
+      console.log(response)
+    }).catch(error => {
+      setError(error);
+    });
+  }
+
+  function handleDeleteCard(workspace_id: string='NA', id: string,){
+    axios.delete(BASE_URL +`/api/v1/workspaces/${workspace_id}/job-applications/${id}`, {
+      headers: {
+        'Authorization': retrieveJwt(),
+      }
+    }).then((response) => {
+      console.log(response)
     }).catch(error => {
       setError(error);
     });
