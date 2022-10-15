@@ -44,7 +44,7 @@ function WorkspaceCard(props: WorkspaceCardProps) {
 
   return (
     <div
-      className="relative block rounded-xl border border-gray-100 p-8 shadow-xl bg-white m-5 hover:border-indigo-600 hover:drop-shadow-2xl"
+      className="relative block rounded-xl border border-gray-100 px-8 py-4 shadow-xl bg-white m-5 hover:border-indigo-600 hover:drop-shadow-2xl"
     >
 
       <div className="text-gray-500 sm:pr-8">
@@ -56,23 +56,20 @@ function WorkspaceCard(props: WorkspaceCardProps) {
         </p>
       </div>
 
-      <div className='flex justify-end gap-x-7'>
+      <div className='flex justify-end gap-x-7 mt-2'>
         <button
-          type="submit"
           className="group relative rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           onClick={() => handleLinkToDashboard(props.workspace_id)}
         >
           Go to Dashboard
         </button>
         <button
-          type="submit"
           className="group relative rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           onClick={() => handleEditWorkspace()}
         >
           Edit
         </button>
         <button
-          type="submit"
           className="group relative rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
           onClick={() => handleDeleteWorkspace(props.workspace_id)}
         >

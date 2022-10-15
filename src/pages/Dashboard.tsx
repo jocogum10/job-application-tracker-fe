@@ -30,6 +30,7 @@ function Dashboard() {
   const [error, setError] = useState([]);
   const [workspaceName, setWorkspaceName] = useState([]);
 
+
   useEffect( () => {
     const jwt = retrieveJwt();
     axios.all([
@@ -67,14 +68,18 @@ function Dashboard() {
     e.preventDefault();
   }
 
-  function onDrop(e:React.DragEvent<HTMLDivElement>, columnId: string){
+  function onDrop(e:React.DragEvent<HTMLDivElement>, title: string){
     const id = e.dataTransfer.getData('id');
 
     const updatedJobApps = jobApplications.filter( (jobApplication) => {
-      if(jobApplication.id.toString() === id) {
-        console.log(jobApplication)
+      const draggedCard = jobApplication.id;
+      if(draggedCard.toString() === id) {
+        jobApplication.attributes.status = title.toLowerCase();
       }
+      return jobApplication;
     })
+    setJobApplications(updatedJobApps);
+    console.log(jobApplications);
   }
   
   return (
@@ -88,10 +93,10 @@ function Dashboard() {
         </div>
       </section>
       <main className='grid grid-cols-4 m-1'>
-        <Column key={1} title={'Applied'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
-        <Column key={2} title={'Interviewed'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
-        <Column key={3} title={'Rejected'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
-        <Column key={4} title={'Offered'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver}/>
+        <Column key={1} title={'Applied'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
+        <Column key={2} title={'Interviewed'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop}/>
+        <Column key={3} title={'Rejected'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop}/>
+        <Column key={4} title={'Offered'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop}/>
       </main>
     </div>
   )

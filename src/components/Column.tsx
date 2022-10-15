@@ -6,6 +6,7 @@ type columnType = {
   jobApplications: JobApplicationModel[];
   onDragStart: (e: React.DragEvent<HTMLDivElement>, id: string) => void;
   onDragOver: (e: React.DragEvent<HTMLDivElement>) => void;
+  onDrop: (e: React.DragEvent<HTMLDivElement>, title: string) => void; 
 };
 
 interface JobApplicationModel {
@@ -20,7 +21,7 @@ interface JobApplicationModel {
   }
 }
 
-function Column({title, jobApplications, onDragStart, onDragOver}: columnType) {
+function Column({title, jobApplications, onDragStart, onDragOver, onDrop}: columnType) {
 
   const jobCards = jobApplications?.filter( (jobApp) => {
       return jobApp.attributes.status === title.toLowerCase();
@@ -28,7 +29,7 @@ function Column({title, jobApplications, onDragStart, onDragOver}: columnType) {
       return <JobAppCard key={jobApp.id} id={jobApp.id} jobApplication={jobApp} onDragStart={onDragStart}/>
     });
   return (
-    <div className='m-1 bg-indigo-300 h-full rounded p-3' onDragOver={onDragOver}>
+    <div className='m-1 bg-indigo-500 h-full rounded p-3' onDragOver={onDragOver} onDrop={(e) => onDrop(e, title)}>
       {title}
       {jobCards}
     </div>
