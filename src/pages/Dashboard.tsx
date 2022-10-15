@@ -135,7 +135,7 @@ function Dashboard() {
         'Authorization': retrieveJwt(),
       }
     }).then((response) => {
-      console.log(response)
+      // console.log(response)
       if(response.status === 202){
         retrieveJobApplications();
       }
@@ -144,17 +144,6 @@ function Dashboard() {
     });
   }
 
-  function handleDeleteCard(workspace_id: string='NA', id: string,){
-    axios.delete(BASE_URL +`/api/v1/workspaces/${workspace_id}/job-applications/${id}`, {
-      headers: {
-        'Authorization': retrieveJwt(),
-      }
-    }).then((response) => {
-      console.log(response)
-    }).catch(error => {
-      setError(error);
-    });
-  }
 
   // --------------
   const modal = <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -303,10 +292,10 @@ function Dashboard() {
         </div>
       </section>
       <main className='grid grid-cols-4 m-1'>
-        <Column key={1} title={'Applied'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
-        <Column key={2} title={'Interviewed'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
-        <Column key={3} title={'Rejected'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
-        <Column key={4} title={'Offered'} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
+        <Column key={1} title={'Applied'} workspace_id={workspace_id} retrieveJobApplications={retrieveJobApplications} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
+        <Column key={2} title={'Interviewed'} workspace_id={workspace_id} retrieveJobApplications={retrieveJobApplications} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
+        <Column key={3} title={'Rejected'} workspace_id={workspace_id} retrieveJobApplications={retrieveJobApplications} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
+        <Column key={4} title={'Offered'} workspace_id={workspace_id} retrieveJobApplications={retrieveJobApplications} jobApplications={jobApplications} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
       </main>
       {newJobAppModal && modal}
     </div>
