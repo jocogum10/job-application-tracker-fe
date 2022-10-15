@@ -83,7 +83,6 @@ function Dashboard() {
       const draggedCard = jobApplication.id;
       if (draggedCard.toString() === id) {
         jobApplication.attributes.status = title.toLowerCase();
-        console.log('update card: ',jobApplication);
         handleUpdateCardOnDrop(workspace_id, id, jobApplication);
       }
       // return jobApplication;
@@ -106,15 +105,16 @@ function Dashboard() {
         'Authorization': retrieveJwt(),
       }
     }).then((response) => {
-      // console.log(response)
-      setNewJobAppModal(false);
-      setJobTitle('');
-      setJobDescription('');
-      setJobCompany('');
-      setJobLink('');
-      setJobStatus('Applied');
-      setJobNotes('');
-      retrieveJobApplications();
+      if(response.status === 201){
+        setNewJobAppModal(false);
+        setJobTitle('');
+        setJobDescription('');
+        setJobCompany('');
+        setJobLink('');
+        setJobStatus('Applied');
+        setJobNotes('');
+        retrieveJobApplications();
+      }
     }).catch(error => {
       setError(error);
     });
@@ -135,8 +135,10 @@ function Dashboard() {
         'Authorization': retrieveJwt(),
       }
     }).then((response) => {
-      retrieveJobApplications();
       console.log(response)
+      if(response.status === 202){
+        retrieveJobApplications();
+      }
     }).catch(error => {
       setError(error);
     });
