@@ -47,17 +47,17 @@ $ npm start
 # UI
 
 ### Login
-![login](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/dashboard%20page.PNG)
+![login](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/dashboard%20page.PNG)
 
 ### Sign up
-![signup](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/signup.PNG)
+![signup](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/signup.PNG)
 
 
 ### Home Page
-![home](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/home%20page.PNG)
+![home](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/home%20page.PNG)
 
 ### Workspace Page
-![workspace](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/workspace%20page.PNG)
+![workspace](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/workspace%20page.PNG)
 
 ### Dashboard Page
-![dashboard](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/dashboard%20page.PNG)
+![dashboard](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/dashboard%20page.PNG)
