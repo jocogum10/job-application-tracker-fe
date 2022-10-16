@@ -47,7 +47,7 @@ $ npm start
 # UI
 
 ### Login
-![login](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/dashboard%20page.PNG)
+![login](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/login.PNG)
 
 ### Sign up
 ![signup](https://github.com/jocogum10/job-application-tracker-fe/blob/main/public/signup.PNG)
