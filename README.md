@@ -5,14 +5,28 @@ This repository is the front end of the app.
 
 ---
 
+## Version
+ - React v18.2.0
+ - TailwindCSS v3.1.8
+ - React Router v6.4.1
+ - Typescript v4.8.4
+
+## Setup
+```
+$ npm start
+```
+
+
 # Components and Pages
 ![Component Tree](components-tree.svg)
 
-# Parts
-- React JS
-- Ruby on Rails API
-
 # Features
+- User can Log In
+- User can Sign Up
+- User can create, read, update, delete Workspaces
+- User can create, read, update, delete Job Applications
+
+# Tools Used
 - React Router
 - Axios
 - Typescript
@@ -33,4 +47,17 @@ This repository is the front end of the app.
 # UI
 
 ### Login
-![login](https://github.com/jocogum10/banking-app/blob/main/public/login.gif)
+![login](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/dashboard%20page.PNG)
+
+### Sign up
+![signup](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/signup.PNG)
+
+
+### Home Page
+![home](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/home%20page.PNG)
+
+### Workspace Page
+![workspace](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/workspace%20page.PNG)
+
+### Dashboard Page
+![dashboard](https://github.com/jocogum10/job-application-tracker-fe/blob/improve_readme/public/dashboard%20page.PNG)
