@@ -3,6 +3,8 @@
 An app that uses React JS for the front end and Ruby on Rails API for the backend.
 This repository is the front end of the app.
 
+---
+
 # Components and Pages
 ![Component Tree](components-tree.svg)
 
@@ -19,7 +21,7 @@ This repository is the front end of the app.
 # Pages Implemented
 - [x] Homepage
 - [x] Workspace
-- [ ] Dashboard
+- [x] Dashboard
 - [x] Log In
 - [x] Sign Up
 - [ ] Profile
@@ -27,3 +29,8 @@ This repository is the front end of the app.
 # Projects Link
 - Board: [Visit the link to see the progress of this project](https://github.com/users/jocogum10/projects/3/views/1).
 - API: [Visit the link to see the progress of the API used](https://github.com/jocogum10/job-application-tracker-api)
+
+# UI
+
+### Login
+![login](https://github.com/jocogum10/banking-app/blob/main/public/login.gif)
