@@ -13,7 +13,7 @@ function App() {
     <main className='h-screen overflow-auto bg-gray-200'>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/:workspace_id" element={<Dashboard />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
