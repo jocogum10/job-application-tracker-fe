@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import retrieveJwt from '../utils/retrieveJwt'
 
-const BASE_URL = 'http://localhost:3000'
+// const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'https://job-application-tracker-api.herokuapp.com/'
 
 type JobAppType = {
   jobApplication: JobApplicationModel;
