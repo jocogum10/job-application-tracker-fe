@@ -1,7 +1,7 @@
 {
   "name": "job_application_tracker_fe",
   "version": "0.1.0",
-  "homepage": "https://github.com/jocogum10/job-application-tracker-fe",
+  "homepage": "https://jocogum10.github.io/job-application-tracker-fe/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
