@@ -7,7 +7,7 @@ import saveJwt from '../utils/saveJwt';
 import saveUser from '../utils/saveUser';
 
 // const BASE_URL = 'http://localhost:3000'
-const BASE_URL = 'https://job-application-tracker-api.herokuapp.com/'
+const BASE_URL = 'https://job-application-tracker-api.herokuapp.com'
 
 type userType = {
   id: number

@@ -6,7 +6,7 @@ import retrieveJwt from '../utils/retrieveJwt'
 import Column from '../components/Column'
 
 // const BASE_URL = 'http://localhost:3000'
-const BASE_URL = 'https://job-application-tracker-api.herokuapp.com/'
+const BASE_URL = 'https://job-application-tracker-api.herokuapp.com'
 
 interface JobApplicationModel {
   id: number
