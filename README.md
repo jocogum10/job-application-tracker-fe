@@ -1,7 +1,8 @@
-# ![Job Application Tracker - Front End](https://jocogum10.github.io/job-application-tracker-fe/)
+# Job Application Tracker - Front End
 
 An app that uses React JS for the front end and Ruby on Rails API for the backend.
 This repository is the front end of the app.
+Visit the live code: [Job Application Tracker - Front End](https://jocogum10.github.io/job-application-tracker-fe/)
 
 ---
 
